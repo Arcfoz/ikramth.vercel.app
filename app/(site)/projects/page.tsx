@@ -2,6 +2,8 @@ import { ProjectCard } from "@/components/ui/ProjectCard";
 import { Metadata } from "next";
 import Template from "@/app/(site)/template";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Projects | Ikram Tauffiqul Hakim",
   metadataBase: new URL("https://ikramth.vercel.app/projects"),
@@ -16,7 +18,6 @@ export const metadata: Metadata = {
       "https://res.cloudinary.com/dtshpujvo/image/upload/v1710232874/ikramth.jpg",
   },
 };
-
 export default function Projects() {
   return (
     <Template>
