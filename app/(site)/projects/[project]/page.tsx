@@ -32,12 +32,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataBase: new URL(
       `https://ikramth.vercel.app/projects/${project.slug}`,
     ),
-    description: project.tagline,
+    description: project.shortdesc,
     openGraph: {
       images: urlFor(project.coverImage?.image).width(1200).height(630).url(),
       url: `https://ikramth.vercel.app/projects/${project.slug}`,
       title: project.name,
-      description: project.tagline,
+      description: project.shortdesc,
     },
   };
 }
