@@ -13,7 +13,7 @@ const options = {
     "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer with a passion for crafting websites, Android apps, both front-end and back-end development, and visual design.",
   url: "https://ikramth.vercel.app/",
   ogImage:
-    "https://res.cloudinary.com/dtshpujvo/image/upload/v1709750214/bitmap_kc4aek.jpg",
+    "https://res.cloudinary.com/dtshpujvo/image/upload/v1710232874/ikramth.jpg",
 };
 
 export const metadata: Metadata = {
