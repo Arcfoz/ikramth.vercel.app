@@ -3,6 +3,7 @@ import { BiLinkExternal, BiSolidQuoteRight } from "react-icons/bi";
 import PortableImage from "./PortableImage";
 import CodeBlock from "./CodeBlock";
 import HashScroll from "./HashScroll";
+import Link from "next/link";
 
 export const CustomPortableText: PortableTextComponents = {
   types: {
@@ -73,16 +74,28 @@ export const CustomPortableText: PortableTextComponents = {
       </strong>
     ),
     link: ({ children, value }) => {
-      return (
-        <a
-          className="text-blue-500 hover:underline dark:text-blue-400"
-          href={value?.href}
-          rel="noreferrer noopener"
-          target="_blank"
-        >
-          {children} <BiLinkExternal className="inline" aria-hidden="true" />
-        </a>
-      );
+      if (value?.href === "/projects") {
+        return (
+          <Link
+            className="text-zinc-50 hover:underline"
+            href={value?.href}
+            rel="noreferrer noopener"
+          >
+            {children} <BiLinkExternal className="inline" aria-hidden="true" />
+          </Link>
+        );
+      } else {
+        return (
+          <Link
+            className="text-zinc-50 hover:underline"
+            href={value?.href}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            {children} <BiLinkExternal className="inline" aria-hidden="true" />
+          </Link>
+        );
+      }
     },
     code: ({ children }) => (
       <code className="font-incognito dark:bg-primary-bg bg-secondary-bg rounded-sm px-1 py-[0.15rem] font-medium text-pink-500 dark:text-zinc-200">
