@@ -3,7 +3,6 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import React from "react";
 import WorkSection from "./components/WorkSection";
-import { sanityFetch } from "@/sanity/sanity.client";
 import { profileQuery } from "@/sanity/sanity.query";
 import { CustomPortableText } from "@/components/shared/CustomPortableText";
 import Skill from "./components/Skill";
@@ -28,10 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const profile: ProfileType[] = await sanityFetch({
-    query: profileQuery,
-    tags: ["profile"],
-  });
+  const profile: ProfileType[] = await profileQuery();
 
   return (
     <main className="min-h-screen">

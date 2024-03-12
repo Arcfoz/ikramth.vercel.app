@@ -16,27 +16,31 @@ export async function getProfile() {
       socialLinks,
       skills,
       projectdesc
-    }`
+    }`,
   );
 }
 
-export const profileQuery = groq`*[_type == "profile"]{
-  _id,
-  fullName,
-  headline,
-  profileImage {
-    "image": asset->url,
-    "lqip": asset->metadata.lqip,
-    alt,
-  },
-  shortBio,
-  location,
-  fullBio,
-  email,
-  "resumeURL": resumeURL.asset->url,
-  socialLinks,
-  usage
-}`;
+export async function profileQuery() {
+  return client.fetch(
+    groq`*[_type == "profile"]{
+      _id,
+      fullName,
+      headline,
+      profileImage {
+        "image": asset->url,
+        "lqip": asset->metadata.lqip,
+        alt,
+      },
+      shortBio,
+      location,
+      fullBio,
+      email,
+      "resumeURL": resumeURL.asset->url,
+      socialLinks,
+      usage
+    }`,
+  );
+}
 
 export async function getProject() {
   return client.fetch(
@@ -50,7 +54,7 @@ export async function getProject() {
       coverImage { "image": asset->url },
       "slug": slug.current,
       "logo": logo.asset->url,
-    }`
+    }`,
   );
 }
 
@@ -65,7 +69,7 @@ export async function getWork() {
       description,
       startDate,
       endDate,
-    }`
+    }`,
   );
 }
 
@@ -80,9 +84,10 @@ export async function getCertificate() {
       description,
       startDate,
       endDate,
-    }`
+    }`,
   );
 }
+
 export async function getSingleProject(slug: string) {
   return client.fetch(
     groq`*[_type == "project" && slug.current == $slug][0]{
@@ -95,7 +100,7 @@ export async function getSingleProject(slug: string) {
       tagline,
       description
     }`,
-    { slug }
+    { slug },
   );
 }
 

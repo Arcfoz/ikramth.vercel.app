@@ -1,18 +1,21 @@
 import Image from "next/image";
 import { Metadata } from "next";
-import { singleProjectQuery } from "@/sanity/sanity.query";
+import {
+  getProject,
+  getSingleProject,
+  singleProjectQuery,
+} from "@/sanity/sanity.query";
 import { PortableText } from "@portabletext/react";
-import { sanityFetch } from "@/sanity/sanity.client";
 import { CustomPortableText } from "@/components/shared/CustomPortableText";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
-import { ProjectType } from "@/types";
 import { urlFor } from "@/sanity/sanity.image";
 import Template from "@/app/(site)/template";
 import { Tag } from "@/components/shared/tag";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { FaBookOpen, FaInfo } from "react-icons/fa6";
+import { ProjectType } from "@/types";
 
 type Props = {
   params: {
@@ -22,11 +25,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.project;
-  const project: ProjectType = await sanityFetch({
-    query: singleProjectQuery,
-    tags: ["project"],
-    qParams: { slug },
-  });
+  const project: ProjectType = await getSingleProject(slug);
   return {
     title: `${project.name}`,
     metadataBase: new URL(
@@ -44,11 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Project({ params }: Props) {
   const slug = params.project;
-  const project: ProjectType = await sanityFetch({
-    query: singleProjectQuery,
-    tags: ["project"],
-    qParams: { slug },
-  });
+  const project: ProjectType = await getSingleProject(slug);
 
   return (
     <Template>

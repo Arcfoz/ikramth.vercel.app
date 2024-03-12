@@ -11,9 +11,3 @@ const config: ClientConfig = {
 const client = createClient(config);
 
 export default client;
-
-export async function sanityFetch<QueryResponse>({ query, qParams, tags }: { query: string; qParams?: QueryParams; tags: string[] }): Promise<QueryResponse> {
-  return client.fetch<QueryResponse>(query, qParams || {}, {
-    next: { tags },
-  });
-}
