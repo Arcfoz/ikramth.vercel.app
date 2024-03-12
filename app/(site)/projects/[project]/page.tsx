@@ -20,7 +20,6 @@ type Props = {
   };
 };
 
-// Dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.project;
   const project: ProjectType = await sanityFetch({
