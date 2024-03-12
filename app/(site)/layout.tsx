@@ -10,7 +10,7 @@ const sen = Sen({ subsets: ["latin"] });
 const options = {
   title: "Ikram Tauffiqul H",
   description:
-    "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer with a passion for crafting websites, Android apps, both front-end and back-end development, and visual design.",
+    "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer, passionate about crafting user-friendly digital experiences. I'm currently delving into the exciting fields of machine learning and data analytics.",
   url: "https://ikramth.vercel.app/",
   ogImage:
     "https://res.cloudinary.com/dtshpujvo/image/upload/v1710232874/ikramth.jpg",
