@@ -11,7 +11,7 @@ const options = {
   title: "Ikram Tauffiqul H",
   description:
     "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer with a passion for crafting websites, Android apps, both front-end and back-end development, and visual design.",
-  url: "https://ikramtauffiqulh.vercel.app/",
+  url: "https://ikramth.vercel.app/",
   ogImage:
     "https://res.cloudinary.com/dtshpujvo/image/upload/v1709750214/bitmap_kc4aek.jpg",
 };
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: options.title,
     url: options.url,
-    siteName: "ikramtauffiqulh.vercel.app",
+    siteName: "ikramth.vercel.app",
     locale: "en-US",
     type: "website",
     description: options.description,

@@ -14,12 +14,12 @@ import SigleContactSection from "../components/SigleContactSection";
 
 export const metadata: Metadata = {
   title: "About | Ikram Tauffiqul Hakim",
-  metadataBase: new URL("https://ikramtauffiqulh.vercel.app/about"),
+  metadataBase: new URL("https://ikramth.vercel.app/about"),
   description:
     "Learn more about my skills, experience and technical background",
   openGraph: {
     title: "About | Ikram Tauffiqul H",
-    url: "https://ikramtauffiqulh.vercel.app/about",
+    url: "https://ikramth.vercel.app/about",
     description:
       "Learn more about my skills, experience and technical background",
     images:
