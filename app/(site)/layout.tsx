@@ -44,6 +44,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          defer
+          src="https://us.umami.is/script.js"
+          data-website-id="d782a0af-d13c-4c94-9554-98e5ef3fac2b"
+        ></script>
+      </head>
       <body className={`${sen.className} bg-black`}>
         <ThemeProvider
           attribute="class"
