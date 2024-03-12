@@ -4,6 +4,7 @@ import Template from "@/app/(site)/template";
 
 export const dynamic = "force-dynamic";
 
+
 export const metadata: Metadata = {
   title: "Projects | Ikram Tauffiqul Hakim",
   metadataBase: new URL("https://ikramth.vercel.app/projects"),
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
       "https://res.cloudinary.com/dtshpujvo/image/upload/v1710232874/ikramth.jpg",
   },
 };
-export default function Projects() {
+export default  async function Projects() {
   return (
     <Template>
       <div className="relative z-10 bg-white bg-grid-black/[0.96] dark:bg-black dark:bg-grid-white/[0.05]">
