@@ -7,17 +7,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/projects/${project.slug}`,
+    changeFrequency: "weekly",
   }));
 
   return [
     {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      changeFrequency: "weekly",
     },
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`,
+      changeFrequency: "weekly",
     },
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/projects`,
+      changeFrequency: "weekly",
     },
     ...projectEntries,
   ];
