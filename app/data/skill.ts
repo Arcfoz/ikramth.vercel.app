@@ -1,31 +1,3 @@
-import {
-  SiSanity,
-  SiTensorflow,
-  SiPython,
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiTailwindcss,
-  SiPandas,
-  SiScikitlearn,
-  SiMysql,
-  SiTableau,
-  SiKotlin,
-  SiJetpackcompose,
-  SiExpress,
-  SiGoogledocs,
-  SiMicrosoftoffice,
-  SiPytorch,
-  SiInkscape,
-  SiFigma,
-  SiAdobe,
-  SiNextdotjs,
-  SiFastapi,
-  SiDocker,
-} from "react-icons/si";
-
-import { Icon } from "@iconify/react";
-
 export const skillLinks = [
   // Web Development
   {
@@ -80,6 +52,24 @@ export const skillLinks = [
     id: "web_9",
     name: "Docker",
     icon: "skill-icons:docker",
+    category: "Web Development",
+  },
+  {
+    id: "web_10",
+    name: "Golang",
+    icon: "logos:go",
+    category: "Web Development",
+  },
+  {
+    id: "web_11",
+    name: "SQL (Postgres)",
+    icon: "logos:postgresql",
+    category: "Web Development",
+  },
+  {
+    id: "web_12",
+    name: "GCP",
+    icon: "skill-icons:gcp-dark",
     category: "Web Development",
   },
 

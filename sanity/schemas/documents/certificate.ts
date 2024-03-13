@@ -1,6 +1,7 @@
 import { BiCertification } from "react-icons/bi";
+import { defineType } from "sanity";
 
-const certificate = {
+export default defineType({
   name: "certificate",
   title: "Certificate",
   type: "document",
@@ -47,6 +48,4 @@ const certificate = {
       type: "date",
     },
   ],
-};
-
-export default certificate;
+});

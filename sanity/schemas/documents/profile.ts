@@ -1,6 +1,5 @@
 import { defineField } from "sanity";
 import { BiUser } from "react-icons/bi";
-import { BiPlus } from "react-icons/bi";
 
 const profile = {
   name: "profile",
@@ -30,8 +29,17 @@ const profile = {
       fields: [
         {
           name: "alt",
-          title: "Alt",
           type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessiblity.",
+          validation: (rule:any) => {
+            return rule.custom((alt:any, context:any) => {
+              if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
+                return "Required";
+              }
+              return true;
+            });
+          },
         },
       ],
     },
@@ -54,7 +62,8 @@ const profile = {
     {
       name: "fullBio",
       title: "Full Bio",
-      type: "blockContent",
+      type: "array",
+      of: [{ type: "block" }],
     },
     {
       name: "resumeURL",

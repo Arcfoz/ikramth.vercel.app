@@ -1,11 +1,16 @@
-import { getWork } from "@/sanity/sanity.query";
 import { WorkType } from "@/types";
 import Image from "next/image";
 import React from "react";
 import moment from "moment";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { worksQuery } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/sanity.image";
 
 export default async function WorkSection() {
-  const works: WorkType[] = await getWork();
+
+  const works = await sanityFetch<WorkType>({
+    query: worksQuery,
+  });
 
   return (
     <main>
@@ -32,7 +37,7 @@ export default async function WorkSection() {
               >
                 <Image
                   className="object-cover"
-                  src={work.logo}
+                  src={urlFor(work.logo).url() as string}
                   alt={`${work.name}logo`}
                   fill
                 />

@@ -1,13 +1,32 @@
-import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import HeroSection from "./components/HeroSection";
 import { Spotlight } from "../../components/ui/Spotlight";
 import ProjectSection from "./components/ProjectSection";
 import SigleContactSection from "./components/SigleContactSection";
+import { Metadata } from "next";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { profilesQuery } from "@/sanity/lib/queries";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const profile = await sanityFetch<ProfileType>({
+    query: profilesQuery,
+  });
+
+  return {
+    title: "Ikram Tauffiqul Hakim",
+    description: `${profile.shortBio}`,
+    openGraph: {
+      title: "Ikram Tauffiqul Hakim",
+      url: "https://ikramth.vercel.app/about",
+      description: `${profile.shortBio}`,
+      images:
+        "https://res.cloudinary.com/dtshpujvo/image/upload/v1710337928/bitmap2_x8imxv.jpg",
+    },
+  };
+}
+
 
 export default async function Home() {
-  const profile: ProfileType[] = await getProfile();
-
   return (
     <main className="min-h-screen">
       <div className="relative bg-white bg-grid-black/[0.96] dark:bg-black dark:bg-grid-white/[0.05]">

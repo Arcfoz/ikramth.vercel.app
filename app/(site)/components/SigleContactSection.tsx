@@ -1,10 +1,15 @@
-import { getProfile } from "@/sanity/sanity.query";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { profilesQuery } from "@/sanity/lib/queries";
 import { ProfileType } from "@/types";
 import React from "react";
 import { BiEnvelope } from "react-icons/bi";
 
 export default async function ContactSection() {
-  const profiles: ProfileType[] = await getProfile();
+
+  const profile = await sanityFetch<ProfileType>({
+    query: profilesQuery,
+  });
+
   return (
     <main>
       <section>
@@ -12,7 +17,6 @@ export default async function ContactSection() {
         <p className="text-base leading-relaxed text-zinc-400">
           Feel free to contact me by email at{" "}
         </p>
-        {profiles.map((profile) => (
           <a
             key={profile._id}
             href={`mailto:${profile.email}`}
@@ -21,7 +25,6 @@ export default async function ContactSection() {
             <BiEnvelope className="text-lg" />
             {profile.email}
           </a>
-        ))}
       </section>
     </main>
   );

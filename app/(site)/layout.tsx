@@ -4,16 +4,20 @@ import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { draftMode } from "next/headers";
+import AlertBanner from "./alert-banner";
+import { VisualEditing } from "next-sanity";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const sen = Sen({ subsets: ["latin"] });
 
 const options = {
-  title: "Ikram Tauffiqul H",
+  title: "Ikram Tauffiqul Hakim",
   description:
-    "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer, passionate about crafting user-friendly digital experiences. I'm currently delving into the exciting fields of machine learning and data analytics.",
+    "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer, passionate about crafting user-friendly digital experiences, I'm currently delving into the exciting fields of machine learning and data analytics.",
   url: "https://ikramth.vercel.app/",
   ogImage:
-    "https://res.cloudinary.com/dtshpujvo/image/upload/v1710232874/ikramth.jpg",
+    "https://res.cloudinary.com/dtshpujvo/image/upload/v1710337928/bitmap2_x8imxv.jpg",
 };
 
 export const metadata: Metadata = {
@@ -44,13 +48,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          defer
-          src="https://us.umami.is/script.js"
-          data-website-id="d782a0af-d13c-4c94-9554-98e5ef3fac2b"
-        ></script>
-      </head>
       <body className={`${sen.className} bg-black`}>
         <ThemeProvider
           attribute="class"
@@ -58,8 +55,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {draftMode().isEnabled && <AlertBanner />}
           <Navbar />
           {children}
+          {draftMode().isEnabled && <VisualEditing />}
+          <ScrollToTopButton />
           <Footer />
         </ThemeProvider>
       </body>

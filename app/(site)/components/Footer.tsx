@@ -29,7 +29,7 @@ export default function Footer() {
                 target="_blank"
                 className="flex items-center gap-x-1 hover:underline"
               >
-                <IoLogoVercel /> Next.js
+                <IoLogoVercel /> Vercel
               </a>
             </li>
             <li>
@@ -39,7 +39,7 @@ export default function Footer() {
                 target="_blank"
                 className="flex items-center gap-x-1 hover:underline"
               >
-                <SiNextdotjs /> Vercel
+                <SiNextdotjs /> Next.js
               </a>
             </li>
           </ul>

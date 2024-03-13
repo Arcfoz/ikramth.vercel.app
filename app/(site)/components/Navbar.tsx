@@ -20,8 +20,8 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <main className="mx-auto max-w-7xl p-5 md:p-5">
-      <nav className="flex items-center justify-between rounded-full border bg-black px-8 py-5">
+    <main className="sticky top-0 z-50 mx-auto max-w-7xl py-2">
+      <nav className="flex items-center justify-between rounded-full border bg-background/75 px-8 py-5 backdrop-blur supports-[backdrop-filter]:bg-background/75">
         <Link href={"/"}>
           <h1 className="text-base font-bold md:text-xl">Ikram Tauffiqul H</h1>
         </Link>

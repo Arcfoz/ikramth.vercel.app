@@ -1,51 +1,83 @@
 import Image from "next/image";
-import { Metadata } from "next";
-import {
-  getProject,
-  getSingleProject,
-  singleProjectQuery,
-} from "@/sanity/sanity.query";
-import { PortableText } from "@portabletext/react";
-import { CustomPortableText } from "@/components/shared/CustomPortableText";
+import { Metadata, ResolvingMetadata } from "next";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
-import { urlFor } from "@/sanity/sanity.image";
 import Template from "@/app/(site)/template";
 import { Tag } from "@/components/shared/tag";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { FaBookOpen, FaInfo } from "react-icons/fa6";
-import { ProjectType } from "@/types";
+import { PostQueryResult, PostSlugsResult } from "@/types";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { postQuery } from "@/sanity/lib/queries";
+import { groq, type PortableTextBlock } from "next-sanity";
+import { resolveOpenGraphImage, urlForImage } from "@/sanity/lib/utils";
+import PortableText from "./portable-text";
 
 type Props = {
-  params: {
-    project: string;
-  };
+  params: { slug: string };
 };
-export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.project;
-  const project: ProjectType = await getSingleProject(slug);
-  return {
-    title: `${project.name}`,
-    metadataBase: new URL(
-      `https://ikramth.vercel.app/projects/${project.slug}`,
-    ),
-    description: project.shortdesc,
-    openGraph: {
-      images: urlFor(project.coverImage?.image).width(1200).height(630).url(),
-      url: `https://ikramth.vercel.app/projects/${project.slug}`,
-      title: project.name,
-      description: project.shortdesc,
-    },
-  };
+const postSlugs = groq`*[_type == "post"]{slug}`;
+
+export async function generateStaticParams() {
+  const params = await sanityFetch<PostSlugsResult>({
+    query: postSlugs,
+    perspective: "published",
+    stega: false,
+  });
+  return params.map(({ slug }) => ({ slug: slug?.current }));
 }
 
-export default async function Project({ params }: Props) {
-  const slug = params.project;
-  const project: ProjectType = await getSingleProject(slug);
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//   const slug = params.project;
+//   const project: ProjectType = await getSingleProject(slug);
+//   return {
+//     title: `${project.name}`,
+//     metadataBase: new URL(
+//       `https://ikramth.vercel.app/projects/${project.slug}`,
+//     ),
+//     description: project.shortdesc,
+//     openGraph: {
+//       images: urlFor(project.coverImage?.image).width(1200).height(630).url(),
+//       url: `https://ikramth.vercel.app/projects/${project.slug}`,
+//       title: project.name,
+//       description: project.shortdesc,
+//     },
+//   };
+// }
 
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const post = await sanityFetch<PostQueryResult>({
+    query: postQuery,
+    params,
+    stega: false,
+  });
+  const previousImages = (await parent).openGraph?.images || [];
+  const ogImage = resolveOpenGraphImage(post?.coverImage);
+
+  return {
+    title: post?.title,
+    description: post?.shortdesc,
+    openGraph: {
+      images: ogImage ? [ogImage, ...previousImages] : previousImages,
+    },
+  } satisfies Metadata;
+}
+
+export default async function page({ params }: Props) {
+  const post = await sanityFetch<PostQueryResult>({
+    query: postQuery,
+    params,
+  });
+
+  if (!post?._id) {
+    console.log("Dontol");
+  }
   return (
     <Template>
       <main className="mx-auto min-h-screen max-w-6xl px-8 lg:px-16">
@@ -61,22 +93,23 @@ export default async function Project({ params }: Props) {
             <div className="mb-5">
               <div className="flex items-start justify-between">
                 <h1 className="text-3xl font-bold lg:text-5xl lg:leading-tight">
-                  {project.name}
+                  {post?.title}
                 </h1>
               </div>
               <div className="flow-root">
                 <div className="flex flex-1 flex-col justify-between gap-y-2 md:flex-row md:items-center">
                   <p className="inline-flex items-center gap-x-2 text-zinc-400">
                     <span className="text-xs leading-none text-zinc-400">
-                      {project.tagline}
+                      {post?.tagline}
                     </span>
                     <span className="size-1.5 rounded-full bg-zinc-700" />
                     <span className="text-xs leading-none text-zinc-400">
-                      {project.year}
+                      {post?.year}
                     </span>
                   </p>
+
                   <div className="md:float float-right">
-                    {project.onProgress && (
+                    {post?.onProgress && (
                       <Tag
                         variant="success"
                         startIcon={
@@ -96,23 +129,23 @@ export default async function Project({ params }: Props) {
             className="rounded-xl border border-zinc-800"
             width={900}
             height={460}
-            src={project.coverImage?.image}
-            alt={project.name}
+            src={urlForImage(post?.coverImage)?.url() as string}
+            alt={post?.title as string}
           />
 
-          {project.projectUrl && (
+          {post?.projectUrl && (
             <Button
               asChild
               className="mt-5 h-12 w-full rounded-full border bg-[#1d1d20] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#1d1d20]"
             >
-              <Link href={project.projectUrl} target="_blank">
+              <Link href={post?.projectUrl} target="_blank">
                 <FaBookOpen />
                 &nbsp; Documentation
               </Link>
             </Button>
           )}
 
-          {project.name === "Nutriku" && (
+          {post?.title === "Nutriku" && (
             <Button
               asChild
               className="mt-5 h-12 w-full rounded-full border bg-[#1d1d20] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#1d1d20]"
@@ -128,14 +161,13 @@ export default async function Project({ params }: Props) {
           )}
 
           <div className="mt-4 flex flex-col leading-7 text-zinc-400">
-            {project.shortdesc}
+            {post?.shortdesc}
           </div>
 
           <div className="mb-36 mt-4 flex flex-col leading-7 text-zinc-400">
-            <PortableText
-              value={project.description}
-              components={CustomPortableText}
-            />
+            {post?.content?.length && (
+              <PortableText value={post.content as PortableTextBlock[]} />
+            )}
           </div>
         </div>
       </main>

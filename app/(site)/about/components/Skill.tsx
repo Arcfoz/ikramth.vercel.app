@@ -40,7 +40,7 @@ export default function Skill() {
                     <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(255,255,255,1)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   </span>
                   <div className="class relative z-10 flex items-center space-x-2 rounded-full bg-zinc-950 px-4 py-0.5 text-zinc-400 ring-1 ring-white ring-opacity-10 duration-300 hover:text-zinc-100">
-                    <Icon icon={value.icon} />
+                    <Icon icon={value.icon} width="24" height="24" />
                     &nbsp;
                     {value.name}
                   </div>
