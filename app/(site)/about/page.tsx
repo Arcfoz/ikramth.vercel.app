@@ -3,7 +3,7 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import React from "react";
 import WorkSection from "./components/WorkSection";
-import { profileQuery } from "@/sanity/sanity.query";
+import { getProfile, profileQuery } from "@/sanity/sanity.query";
 import { CustomPortableText } from "@/components/shared/CustomPortableText";
 import Skill from "./components/Skill";
 import CerfSection from "./components/CerfSection";
@@ -11,20 +11,22 @@ import { Metadata } from "next";
 import { FaLocationDot } from "react-icons/fa6";
 import SigleContactSection from "../components/SigleContactSection";
 
-export const metadata: Metadata = {
-  title: "About | Ikram Tauffiqul Hakim",
-  metadataBase: new URL("https://ikramth.vercel.app/about"),
-  description:
-    "Learn more about my skills, experience and technical background",
-  openGraph: {
-    title: "About | Ikram Tauffiqul H",
-    url: "https://ikramth.vercel.app/about",
-    description:
-      "Learn more about my skills, experience and technical background",
-    images:
-      "https://res.cloudinary.com/dtshpujvo/image/upload/v1710232874/ikramth.jpg",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const profile: ProfileType = await profileQuery();
+
+  return {
+    title: "About | Ikram Tauffiqul Hakim",
+    description: `${profile.fullBio}`,
+    openGraph: {
+      title: "About | Ikram Tauffiqul Hakim",
+      url: "https://ikramth.vercel.app/about",
+      description: `${profile.fullBio}`,
+      images:
+        "https://res.cloudinary.com/dtshpujvo/image/upload/v1710337928/bitmap2_x8imxv.jpg",
+    },
+  };
+}
+
 
 export default async function About() {
   const profile: ProfileType[] = await profileQuery();

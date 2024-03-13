@@ -92,6 +92,7 @@ export async function getSingleProject(slug: string) {
   return client.fetch(
     groq`*[_type == "project" && slug.current == $slug][0]{
       _id,
+      onProgress,
       name,
       projectUrl,
       year,

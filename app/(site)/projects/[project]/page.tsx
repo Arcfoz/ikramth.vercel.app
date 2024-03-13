@@ -22,7 +22,12 @@ type Props = {
     project: string;
   };
 };
-export const dynamic = "force-dynamic";
+
+export async function generateStaticParams() {
+  const projects: ProjectType[] = await getProject();
+
+  return projects.map((id) => id.slug);
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.project;
@@ -45,7 +50,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Project({ params }: Props) {
   const slug = params.project;
   const project: ProjectType = await getSingleProject(slug);
-
   return (
     <Template>
       <main className="mx-auto min-h-screen max-w-6xl px-8 lg:px-16">
@@ -75,6 +79,7 @@ export default async function Project({ params }: Props) {
                       {project.year}
                     </span>
                   </p>
+
                   <div className="md:float float-right">
                     {project.onProgress && (
                       <Tag
