@@ -6,7 +6,7 @@ import Template from "@/app/(site)/template";
 import { Tag } from "@/components/shared/tag";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import { Button } from "@/components/ui/button";
-import { FaBookOpen, FaInfo } from "react-icons/fa6";
+import { FaBookOpen, FaGlobe, FaInfo } from "react-icons/fa6";
 import { PostQueryResult, PostSlugsResult } from "@/types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postQuery } from "@/sanity/lib/queries";
@@ -46,7 +46,6 @@ export async function generateStaticParams() {
 //     },
 //   };
 // }
-
 
 export async function generateMetadata(
   { params }: Props,
@@ -156,6 +155,21 @@ export default async function page({ params }: Props) {
               >
                 <FaInfo />
                 &nbsp; More Information
+              </Link>
+            </Button>
+          )}
+
+          {post?.title === "Rantea" && (
+            <Button
+              asChild
+              className="mt-5 h-12 w-full rounded-full border bg-[#1d1d20] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#1d1d20]"
+            >
+              <Link
+                href="https://rantea.vercel.app/"
+                target="_blank"
+              >
+                <FaGlobe />
+                &nbsp; Website
               </Link>
             </Button>
           )}
