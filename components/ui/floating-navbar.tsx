@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -23,6 +23,7 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(true);
+  const [initialRender, setInitialRender] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -43,6 +44,10 @@ export const FloatingNav = ({
 
   const pathname = usePathname();
 
+  useEffect(() => {
+    setInitialRender(false);
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -61,6 +66,9 @@ export const FloatingNav = ({
           "fixed inset-x-0 top-10 z-[5000] xl:mx-auto mx-10 flex max-w-7xl items-center justify-center space-x-4 rounded-full border border-white/[0.2] bg-[#0D1329]/75  px-8 py-5 shadow-[0px_2px3px-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur supports-[backdrop-filter]:bg-[#0D1329]/75 ",
           className,
         )}
+        style={{
+          width: initialRender ? "100%" : "auto",
+        }}
       >
         {navItems.map((navItem: any, idx: number) => (
           <Link
