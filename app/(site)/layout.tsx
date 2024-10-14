@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { Sen } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { NavBar } from "./components/NavBar";
 import Footer from "./components/Footer";
 import { draftMode } from "next/headers";
 import AlertBanner from "./alert-banner";
 import { VisualEditing } from "next-sanity";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import NavBar from "./components/NavBar";
 
 const sen = Sen({ subsets: ["latin"] });
 
