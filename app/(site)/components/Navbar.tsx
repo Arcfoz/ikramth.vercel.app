@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { FloatingNav } from "../../../components/ui/floating-navbar";
-import { FaLocationDot } from "react-icons/fa6";
-export function NavBar() {
+export default function NavBar() {
   const navItems = [
     {
       name: "Home",
@@ -23,5 +22,3 @@ export function NavBar() {
     </div>
   );
 }
-
-export default NavBar;
