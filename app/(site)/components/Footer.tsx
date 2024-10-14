@@ -7,7 +7,7 @@ import { FaHeart } from "react-icons/fa6";
 export default function Footer() {
   return (
     <main className="mx-auto max-w-7xl p-5 md:p-5">
-      <footer className="flex flex-col items-center justify-between py-5 text-xs text-zinc-400 dark:text-zinc-600 md:flex-row">
+      <footer className="flex flex-col items-center justify-between py-5 text-xs text-zinc-500 md:flex-row">
         <div className="mb-3 flex flex-wrap items-center gap-x-2 md:mb-0">
           Made with <FaHeart className="hover:scale-110 hover:text-zinc-500" />{" "}
           using
@@ -45,15 +45,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex items-center gap-1">
-          Thanks to
-          <a
-            href="https://victoreke.com/"
-            target="_blank"
-            className="hover:underline"
-          >
-            Victor Eke
-          </a>
-          for the reference.
+          Copyright © 2024
         </div>
       </footer>
     </main>

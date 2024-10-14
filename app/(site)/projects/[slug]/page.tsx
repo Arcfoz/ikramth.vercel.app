@@ -73,118 +73,115 @@ export default async function page({ params }: Props) {
     query: postQuery,
     params,
   });
-
-  if (!post?._id) {
-    console.log("Dontol");
-  }
   return (
     <Template>
-      <main className="mx-auto min-h-screen max-w-6xl px-8 lg:px-16">
-        <div className="mx-auto max-w-3xl">
-          <div>
-            <div className="inline-block">
-              <Link href={"/projects"} className="flex items-center">
-                <BiArrowBack style={{ marginRight: "10px" }} />
-                <h1>Project</h1>
-              </Link>
-            </div>
-
-            <div className="mb-5">
-              <div className="flex items-start justify-between">
-                <h1 className="text-3xl font-bold lg:text-5xl lg:leading-tight">
-                  {post?.title}
-                </h1>
+      <div className="relative z-10 bg-[#000319] bg-grid-black/[0.96] dark:bg-grid-white/[0.05]">
+        <main className="relative z-10 mx-auto mt-10 min-h-screen max-w-6xl px-8 lg:px-16">
+          <div className="mx-auto max-w-3xl">
+            <div>
+              <div className="inline-block">
+                <Link href={"/projects"} className="flex items-center">
+                  <BiArrowBack style={{ marginRight: "10px" }} />
+                  <h1>Project</h1>
+                </Link>
               </div>
-              <div className="flow-root">
-                <div className="flex flex-1 flex-col justify-between gap-y-2 md:flex-row md:items-center">
-                  <p className="inline-flex items-center gap-x-2 text-zinc-400">
-                    <span className="text-xs leading-none text-zinc-400">
-                      {post?.tagline}
-                    </span>
-                    <span className="size-1.5 rounded-full bg-zinc-700" />
-                    <span className="text-xs leading-none text-zinc-400">
-                      {post?.year}
-                    </span>
-                  </p>
 
-                  <div className="md:float float-right">
-                    {post?.onProgress && (
-                      <Tag
-                        variant="success"
-                        startIcon={
-                          <MdOutlineDirectionsRun className="size-[15px]" />
-                        }
-                      >
-                        On&nbsp;Going
-                      </Tag>
-                    )}
+              <div className="mb-5">
+                <div className="flex items-start justify-between">
+                  <h1 className="text-3xl font-bold lg:text-5xl lg:leading-tight">
+                    {post?.title}
+                  </h1>
+                </div>
+                <div className="flow-root">
+                  <div className="flex flex-1 flex-col justify-between gap-y-2 md:flex-row md:items-center">
+                    <p className="inline-flex items-center gap-x-2 text-zinc-400">
+                      <span className="text-xs leading-none text-zinc-400">
+                        {post?.tagline}
+                      </span>
+                      <span className="size-1.5 rounded-full bg-zinc-700" />
+                      <span className="text-xs leading-none text-zinc-400">
+                        {post?.year}
+                      </span>
+                    </p>
+
+                    <div className="md:float float-right">
+                      {post?.onProgress && (
+                        <Tag
+                          variant="success"
+                          startIcon={
+                            <MdOutlineDirectionsRun className="size-[15px]" />
+                          }
+                        >
+                          On&nbsp;Going
+                        </Tag>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <Image
-            className="rounded-xl border border-zinc-800"
-            width={900}
-            height={460}
-            src={urlForImage(post?.coverImage)?.url() as string}
-            alt={post?.title as string}
-          />
+            <Image
+              className="rounded-xl border border-zinc-800"
+              width={900}
+              height={460}
+              src={urlForImage(post?.coverImage)?.url() as string}
+              alt={post?.title as string}
+            />
 
-          {post?.projectUrl && (
-            <Button
-              asChild
-              className="mt-5 h-12 w-full rounded-full border bg-[#1d1d20] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#1d1d20]"
-            >
-              <Link href={post?.projectUrl} target="_blank">
-                <FaBookOpen />
-                &nbsp; Documentation
-              </Link>
-            </Button>
-          )}
-
-          {post?.title === "Nutriku" && (
-            <Button
-              asChild
-              className="mt-5 h-12 w-full rounded-full border bg-[#1d1d20] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#1d1d20]"
-            >
-              <Link
-                href="https://www.linkedin.com/feed/update/activity:7092827598300336128/"
-                target="_blank"
+            {post?.projectUrl && (
+              <Button
+                asChild
+                className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
-                <FaInfo />
-                &nbsp; More Information
-              </Link>
-            </Button>
-          )}
-
-          {post?.title === "Rantea" && (
-            <Button
-              asChild
-              className="mt-5 h-12 w-full rounded-full border bg-[#1d1d20] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#1d1d20]"
-            >
-              <Link
-                href="https://rantea.vercel.app/"
-                target="_blank"
-              >
-                <FaGlobe />
-                &nbsp; Website
-              </Link>
-            </Button>
-          )}
-
-          <div className="mt-4 flex flex-col leading-7 text-zinc-400">
-            {post?.shortdesc}
-          </div>
-
-          <div className="mb-36 mt-4 flex flex-col leading-7 text-zinc-400">
-            {post?.content?.length && (
-              <PortableText value={post.content as PortableTextBlock[]} />
+                <Link href={post?.projectUrl} target="_blank">
+                  <FaBookOpen />
+                  &nbsp; Documentation
+                </Link>
+              </Button>
             )}
+
+            {post?.title === "Nutriku" && (
+              <Button
+                asChild
+                className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
+              >
+                <Link
+                  href="https://www.linkedin.com/feed/update/activity:7092827598300336128/"
+                  target="_blank"
+                >
+                  <FaInfo />
+                  &nbsp; More Information
+                </Link>
+              </Button>
+            )}
+
+            {post?.title === "Rantea" && (
+              <Button
+                asChild
+                className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
+              >
+                <Link href="https://rantea.vercel.app/" target="_blank">
+                  <FaGlobe />
+                  &nbsp; Website
+                </Link>
+              </Button>
+            )}
+
+            <div className="mt-4 flex flex-col leading-7 text-zinc-400">
+              {post?.shortdesc}
+            </div>
+
+            <div className="mb-36 mt-4 flex flex-col leading-7 text-zinc-400">
+              {post?.content?.length && (
+                <PortableText value={post.content as PortableTextBlock[]} />
+              )}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+        <div className="absolute -bottom-5 left-0 z-0 mb-5 h-10 w-full bg-gradient-to-t from-[#000319] xl:bottom-0 xl:mb-0 xl:h-32" />
+        <div className="absolute left-0 top-0 z-0 mb-5 h-10 w-full bg-gradient-to-b from-[#000319] xl:bottom-0 xl:mb-0 xl:h-32" />
+      </div>
     </Template>
   );
 }

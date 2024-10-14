@@ -40,7 +40,7 @@ export default async function About() {
 
   return (
     <main className="min-h-screen">
-      <div className="relative bg-white bg-grid-black/[0.96] dark:bg-black dark:bg-grid-white/[0.05]">
+      <div className="relative bg-grid-black/[0.96] bg-[#000319] dark:bg-grid-white/[0.05]">
         <main className="relative z-10 mx-auto max-w-7xl p-5">
           <div key={profile._id}>
             <section className="grid grid-cols-1 justify-items-center lg:grid-cols-2">
@@ -80,8 +80,8 @@ export default async function About() {
             </section>
           </div>
         </main>
-        <div className="absolute -bottom-5 left-0 z-0 mb-5 h-10 w-full bg-gradient-to-t from-black xl:bottom-0 xl:mb-0 xl:h-32" />
-        <div className="absolute left-0 top-0 z-0 mb-5 h-10 w-full bg-gradient-to-b from-black xl:bottom-0 xl:mb-0 xl:h-32" />
+        <div className="absolute -bottom-5 left-0 z-0 mb-5 h-10 w-full bg-gradient-to-t from-[#000319]k xl:bottom-0 xl:mb-0 xl:h-32" />
+        <div className="absolute left-0 top-0 z-0 mb-5 h-10 w-full bg-gradient-to-b from-[#000319] xl:bottom-0 xl:mb-0 xl:h-32" />
       </div>
     </main>
   );

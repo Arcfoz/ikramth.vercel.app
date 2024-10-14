@@ -9,14 +9,13 @@ import { blogsQuery } from "@/sanity/lib/queries";
 import { urlForImage } from "@/sanity/lib/utils";
 
 export async function ProjectCard() {
-
   const blogs = await sanityFetch<BlogsQueryResult>({ query: blogsQuery });
 
   return (
     <div className="relative mx-auto max-w-7xl p-5">
       {blogs.map((blog) => (
         <Link href={`/projects/${blog.slug}`} key={blog._id}>
-          <div className="border-tertiary mb-8 flex flex-col space-y-8 rounded-xl border-[1px] bg-secondary/50 p-4 hover:border-zinc-600 md:flex-row md:space-x-8 md:space-y-0 ">
+          <div className="mb-8 flex flex-col space-y-8 rounded-xl border-[1px] border-zinc-800 bg-[#10132E]/50 p-4 hover:border-zinc-700 md:flex-row md:space-x-8 md:space-y-0 ">
             <div className="overflow-hidden rounded-lg md:h-full md:w-96">
               <div className="relative h-full w-full transition duration-200 hover:opacity-60 md:h-full md:w-96">
                 <Image

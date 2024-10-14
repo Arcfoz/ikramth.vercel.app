@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Sen } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "./components/Navbar";
+import { NavBar } from "./components/NavBar";
 import Footer from "./components/Footer";
 import { draftMode } from "next/headers";
 import AlertBanner from "./alert-banner";
@@ -48,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sen.className} bg-black`}>
+      <body className={`${sen.className} bg-[#000319]`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -56,7 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {draftMode().isEnabled && <AlertBanner />}
-          <Navbar />
+          <NavBar />
           {children}
           {draftMode().isEnabled && <VisualEditing />}
           <ScrollToTopButton />

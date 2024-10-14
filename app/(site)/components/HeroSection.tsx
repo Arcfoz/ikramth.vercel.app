@@ -14,10 +14,10 @@ export default async function HeroSection() {
     <main className="mb-10 flex min-h-[60vh] flex-col-reverse items-center justify-between lg:flex-row">
       <section className="">
         <div key={home._id}>
-          <h1 className="mb-6 min-w-full text-3xl font-bold leading-tight tracking-tight sm:text-5xl lg:min-w-[700px] lg:leading-[3.7rem]">
+          <h1 className="mb-6 min-w-full text-3xl font-bold leading-tight tracking-tight sm:text-5xl lg:min-w-[700px] lg:leading-[3.7rem] ">
             {home.title}
           </h1>
-          <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="text-base leading-relaxed text-zinc-400">
             {home.description}
           </p>
 
@@ -27,7 +27,7 @@ export default async function HeroSection() {
                 <Link
                   href={value.url}
                   {...(value.type === "external" ? { target: "_blank" } : {})}
-                  className="border-slate-zinc inline-flex h-12 w-full animate-shimmer items-center justify-center gap-x-1 rounded-md border bg-[linear-gradient(110deg,#090909,45%,#202020,55%,#090909)] bg-[length:200%_100%] px-2 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 focus:ring-offset-zinc-50 md:w-auto md:gap-x-5 md:px-6"
+                  className="border-slate-800 inline-flex h-12 w-full animate-shimmer items-center justify-center gap-x-1 rounded-md border bg-[linear-gradient(110deg,#020617,45%,#171A2E,55%,#020617)] bg-[length:200%_100%] px-2 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600 focus:ring-offset-2 focus:ring-offset-zinc-50 md:w-auto md:gap-x-5 md:px-6 hover:border-white"
                 >
                   <value.icon />
                   {value.name}

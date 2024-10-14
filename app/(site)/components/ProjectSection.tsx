@@ -18,8 +18,8 @@ export default async function ProjectSection() {
   return (
     <main>
       <section>
-        <h1 className="sm:text-5lg min-w-full text-2xl font-semibold leading-tight tracking-tight lg:min-w-[700px] lg:leading-[3.7rem]">
-          Project
+        <h1 className="sm:text-5lg min-w-full text-2xl font-semibold leading-tight tracking-tight lg:min-w-[700px] lg:leading-[3.7rem] ]">
+          My Project
         </h1>
           <p
             key={profile._id}
@@ -33,7 +33,7 @@ export default async function ProjectSection() {
           <Link
             key={blog._id}
             href={`/projects/${blog.slug}`}
-            className="flex items-center gap-x-4 rounded-lg border border-transparent bg-zinc-900 p-4 ease-in-out hover:border-zinc-700"
+            className="flex items-center gap-x-4 rounded-lg border border-transparent bg-[#10132E] p-4 ease-in-out hover:border-zinc-700"
           >
             <Image
               src={urlFor(blog.logo).url() as string}
