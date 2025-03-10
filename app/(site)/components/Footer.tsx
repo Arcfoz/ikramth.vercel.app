@@ -3,6 +3,7 @@ import { SiSanity } from "react-icons/si";
 import { IoLogoVercel } from "react-icons/io5";
 import { SiNextdotjs } from "react-icons/si";
 import { FaHeart } from "react-icons/fa6";
+import moment from "moment";
 
 export default function Footer() {
   return (
@@ -45,7 +46,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex items-center gap-1">
-          Copyright © 2024
+          Copyright © {moment().format('YYYY')}
         </div>
       </footer>
     </main>

@@ -7,10 +7,12 @@ import { worksQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/sanity.image";
 
 export default async function WorkSection() {
-
   const works = await sanityFetch<WorkType>({
     query: worksQuery,
   });
+
+  // Sort works by startDate in descending order
+  works.sort((a, b) => moment(b.startDate).diff(moment(a.startDate)));
 
   return (
     <main>
@@ -38,7 +40,7 @@ export default async function WorkSection() {
                 <Image
                   className="object-cover"
                   src={urlFor(work.logo).url() as string}
-                  alt={`${work.name}logo`}
+                  alt={`${work.name} logo`}
                   fill
                 />
               </a>
