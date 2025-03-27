@@ -1,5 +1,5 @@
 import { ProfileType } from "@/types";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import React from "react";
 import WorkSection from "./components/WorkSection";
@@ -13,10 +13,8 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { profilesQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/sanity.image";
 
-function extractPlainText(portableText: PortableTextBlock[]): string {
-  return portableText
-    .map((block) => block.children?.map((child: any) => child.text).join(" ") || "")
-    .join(" ");
+function extractPlainText(portableText: any): string {
+  return portableText.map((block: { children?: { text: string }[] }) => block.children?.map(child => child.text).join(" ")).join(" ");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
