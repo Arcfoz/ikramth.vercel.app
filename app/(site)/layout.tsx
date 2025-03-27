@@ -19,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <meta name="google-site-verification" content="axmlIY83P3-hPNKgIxcUtgfhKq1LQkuwDBxHOVvah8U" />
       <body className={`${sen.className} bg-[#000319]`}>
         <Script
           async
