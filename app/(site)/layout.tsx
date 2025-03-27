@@ -12,36 +12,6 @@ import Script from 'next/script'
 
 const sen = Sen({ subsets: ["latin"] });
 
-const options = {
-  title: "Ikram Tauffiqul Hakim",
-  description:
-    "Ikram Tauffiqul Hakim is a App Developer, Visual Designer, and Machine Learning Developer, passionate about crafting user-friendly digital experiences, I'm currently delving into the exciting fields of machine learning and data analytics.",
-  url: "https://ikramth.vercel.app/",
-  ogImage:
-    "https://res.cloudinary.com/dtshpujvo/image/upload/v1710337928/bitmap2_x8imxv.jpg",
-};
-
-export const metadata: Metadata = {
-  title: options.title,
-  metadataBase: new URL(options.url),
-  description: options.description,
-  openGraph: {
-    title: options.title,
-    url: options.url,
-    siteName: "ikramth.vercel.app",
-    locale: "en-US",
-    type: "website",
-    description: options.description,
-    images: options.ogImage,
-  },
-  alternates: {
-    canonical: options.url,
-  },
-  other: {
-    "google-site-verification": "HPO1osDjE2JpSwHA14rPVhIlbWtQelBIkeTGcTShylg",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

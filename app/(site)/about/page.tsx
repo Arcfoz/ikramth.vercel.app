@@ -13,20 +13,21 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { profilesQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/sanity.image";
 
+function extractPlainText(portableText): string {
+  return portableText.map(block => block.children?.map(child => child.text).join(" ")).join(" ");
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const profile = await sanityFetch<ProfileType>({
-    query: profilesQuery,
-  });
+  const profile = await sanityFetch<ProfileType>({ query: profilesQuery });
 
   return {
     title: "About | Ikram Tauffiqul Hakim",
-    description: `${profile.fullBio}`,
+    description: extractPlainText(profile.fullBio),
     openGraph: {
       title: "About | Ikram Tauffiqul Hakim",
-      url: "https://ikramth.vercel.app/about",
-      description: `${profile.fullBio}`,
-      images:
-        "https://res.cloudinary.com/dtshpujvo/image/upload/v1710337928/bitmap2_x8imxv.jpg",
+      url: "https://ikramth.is-a.dev/about",
+      description: extractPlainText(profile.fullBio),
+      images: "https://res.cloudinary.com/dtshpujvo/image/upload/v1710337928/bitmap2_x8imxv.jpg"
     },
   };
 }

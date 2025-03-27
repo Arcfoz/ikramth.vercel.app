@@ -50,6 +50,16 @@ const profile = {
       type: "url",
     },
     {
+      name: "documentationUrl",
+      title: "Documentation URL",
+      type: "url",
+    },
+    {
+      name: "moreInformationUrl",
+      title: "More Information URL",
+      type: "url",
+    },
+    {
       name: "coverImage",
       title: "Cover Image",
       type: "image",

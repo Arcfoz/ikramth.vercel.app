@@ -4,12 +4,12 @@ import Template from "@/app/(site)/template";
 
 export const metadata: Metadata = {
   title: "Projects | Ikram Tauffiqul Hakim",
-  metadataBase: new URL("https://ikramth.vercel.app/projects"),
+  metadataBase: new URL("https://ikramth.is-a.dev/projects"),
   description:
     "Learn more about my skills, experience and technical background",
   openGraph: {
     title: "Projects | Ikram Tauffiqul H",
-    url: "https://ikramth.vercel.app/projects",
+    url: "https://ikramth.is-a.dev/projects",
     description:
       "Learn more about my skills, experience and technical background",
     images:

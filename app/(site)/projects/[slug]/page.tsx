@@ -129,26 +129,24 @@ export default async function page({ params }: Props) {
               alt={post?.title as string}
             />
 
-            {post?.projectUrl && (
+            {post?.documentationUrl && (
               <Button
                 asChild
                 className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
-                <Link href={post?.projectUrl} target="_blank">
+                <Link href={post?.documentationUrl} target="_blank">
                   <FaBookOpen />
                   &nbsp; Documentation
                 </Link>
               </Button>
             )}
 
-            {post?.title === "Nutriku" && (
+            {post?.moreInformationUrl && (
               <Button
                 asChild
                 className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
-                <Link
-                  href="https://www.linkedin.com/feed/update/activity:7092827598300336128/"
-                  target="_blank"
+                <Link href={post?.moreInformationUrl} target="_blank"
                 >
                   <FaInfo />
                   &nbsp; More Information
@@ -156,12 +154,13 @@ export default async function page({ params }: Props) {
               </Button>
             )}
 
-            {post?.title === "Rantea" && (
+            {post?.projectUrl && (
               <Button
                 asChild
                 className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
-                <Link href="https://rantea.vercel.app/" target="_blank">
+                <Link href={post?.projectUrl} target="_blank"
+                >
                   <FaGlobe />
                   &nbsp; Website
                 </Link>

@@ -13,6 +13,8 @@ const postFields = /* groq */ `
   tagline,
   shortdesc,
   projectUrl,
+  documentationUrl,
+  moreInformationUrl,
   logo,
   year,
   coverImage,

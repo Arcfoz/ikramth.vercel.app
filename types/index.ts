@@ -95,6 +95,8 @@ export type BlogsQueryResult = Array<{
   tagline: string | null;
   shortdesc: string | null;
   projectUrl: string | null;
+  documentationUrl: string | null;
+  moreInformationUrl: string | null;
   logo: string | null;
   year: number | null;
   coverImage: {
@@ -139,6 +141,8 @@ export type PostQueryResult = {
   tagline: string | null;
   shortdesc: string | null;
   projectUrl: string | null;
+  documentationUrl: string | null;
+  moreInformationUrl: string | null;
   logo: string | null;
   year: number | null;
   coverImage: {
