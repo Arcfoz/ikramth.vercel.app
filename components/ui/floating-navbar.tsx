@@ -30,9 +30,11 @@ export const FloatingNav = ({
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
 
+      // Always show navbar at the top of the page
       if (scrollYProgress.get() < 0.05) {
         setVisible(true);
       } else {
+        // Show navbar when scrolling up, hide when scrolling down
         if (direction < 0) {
           setVisible(true);
         } else {
@@ -45,7 +47,23 @@ export const FloatingNav = ({
   const pathname = usePathname();
 
   useEffect(() => {
-    setInitialRender(false);
+    // Set initial visibility based on scroll position
+    const handleInitialScroll = () => {
+      if (window.scrollY === 0) {
+        setVisible(true);
+      }
+      setInitialRender(false);
+    };
+
+    // Run on mount
+    handleInitialScroll();
+    
+    // Also listen for scroll events during initial render
+    window.addEventListener('scroll', handleInitialScroll, { once: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleInitialScroll);
+    };
   }, []);
 
   return (
@@ -53,7 +71,7 @@ export const FloatingNav = ({
       <motion.div
         initial={{
           opacity: 1,
-          y: -100,
+          y: 0,
         }}
         animate={{
           y: visible ? 0 : -100,

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sen } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -9,8 +9,26 @@ import { VisualEditing } from "next-sanity";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import NavBar from "./components/NavBar";
 import Script from 'next/script'
+import { createMetadata } from "@/lib/metadata";
 
 const sen = Sen({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#000319' }
+  ],
+}
+
+export const metadata: Metadata = createMetadata({
+  title: "Full-stack Developer & Software Engineer",
+  description: "Ikram Tauffiqul Hakim - Full-stack developer specializing in modern web technologies, creating innovative solutions and exceptional user experiences.",
+  keywords: ["Full-stack Developer", "Software Engineer", "React", "Next.js", "TypeScript", "Web Development", "Ikram Tauffiqul Hakim"],
+});
 
 export default function RootLayout({
   children,
@@ -19,7 +37,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <meta name="google-site-verification" content="axmlIY83P3-hPNKgIxcUtgfhKq1LQkuwDBxHOVvah8U" />
       <body className={`${sen.className} bg-[#000319]`}>
         <Script
           async

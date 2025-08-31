@@ -4,25 +4,34 @@ import { BlogsQueryResult } from "@/types";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://ikramth.is-a.dev";
   const blogs = await sanityFetch<BlogsQueryResult>({ query: blogsQuery });
 
   const projectEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/projects/${blog.slug}`,
-    changeFrequency: "weekly",
+    url: `${baseUrl}/projects/${blog.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
   }));
 
   return [
     {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      url: `${baseUrl}/`,
+      lastModified: new Date(),
       changeFrequency: "weekly",
+      priority: 1,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/about`,
-      changeFrequency: "weekly",
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/projects`,
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
       changeFrequency: "weekly",
+      priority: 0.9,
     },
     ...projectEntries,
   ];

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSvg() {
   return (
-    <div
+    <motion.div
       className="example"
       style={{
         border: "none",
@@ -12,12 +12,25 @@ export default function HeroSvg() {
         marginLeft: "auto",
         marginRight: "auto",
       }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <motion.svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="lg:w-[450px] lgl:h-[450px] w-full h-full">
+      <motion.svg
+        viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg"
+        className="lgl:h-[450px] h-full w-full lg:w-[450px]"
+      >
         <defs>
-          <linearGradient id="paint0_linear_104_44" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#8774a3" stop-opacity="0.5" />
-            <stop offset="100%" stop-color="#8774a3" stop-opacity="0" />
+          <linearGradient
+            id="paint0_linear_104_44"
+            x1="0"
+            y1="0"
+            x2="200"
+            y2="200"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#8774a3" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#8774a3" stopOpacity="0" />
           </linearGradient>
           <clipPath id="clip0_104_44">
             <rect width="200" height="200" fill="white" />
@@ -47,6 +60,6 @@ export default function HeroSvg() {
           />
         </g>
       </motion.svg>
-    </div>
+    </motion.div>
   );
 }

@@ -13,6 +13,11 @@ import { postQuery } from "@/sanity/lib/queries";
 import { groq, type PortableTextBlock } from "next-sanity";
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/lib/utils";
 import PortableText from "./portable-text";
+import { createMetadata, createJsonLd } from "@/lib/metadata";
+import Script from "next/script";
+import Breadcrumb from "@/components/shared/Breadcrumb";
+import RelatedProjects from "@/components/shared/RelatedProjects";
+import ScrollToTopOnRoute from "@/components/shared/ScrollToTopOnRoute";
 
 type Props = {
   params: { slug: string };
@@ -56,16 +61,34 @@ export async function generateMetadata(
     params,
     stega: false,
   });
-  const previousImages = (await parent).openGraph?.images || [];
-  const ogImage = resolveOpenGraphImage(post?.coverImage);
 
-  return {
-    title: post?.title,
-    description: post?.shortdesc,
-    openGraph: {
-      images: ogImage ? [ogImage, ...previousImages] : previousImages,
-    },
-  } satisfies Metadata;
+  if (!post) {
+    return createMetadata({
+      title: "Project Not Found",
+      description: "The requested project could not be found.",
+      noIndex: true,
+    });
+  }
+
+  const ogImage = post.coverImage ? urlForImage(post.coverImage)?.url() : undefined;
+  
+  return createMetadata({
+    title: post.title || "Untitled Project",
+    description: post.shortdesc || `${post.title} - A project by Ikram Tauffiqul Hakim showcasing modern web development technologies.`,
+    path: `/projects/${params.slug}`,
+    image: ogImage,
+    type: "article",
+    publishedTime: post.year ? `${post.year}-01-01` : undefined,
+    keywords: [
+      "Project",
+      "Web Development",
+      post.title || "",
+      post.tagline || "",
+      "Portfolio",
+      "ikramth.is-a.dev",
+      "Ikram Tauffiqul Hakim"
+    ].filter(Boolean),
+  });
 }
 
 export default async function page({ params }: Props) {
@@ -73,11 +96,50 @@ export default async function page({ params }: Props) {
     query: postQuery,
     params,
   });
+
+  if (!post) {
+    return (
+      <Template>
+        <div className="flex items-center justify-center min-h-screen">
+          <h1>Project not found</h1>
+        </div>
+      </Template>
+    );
+  }
+
+  const projectJsonLd = createJsonLd("Article", {
+    headline: post.title,
+    description: post.shortdesc,
+    image: post.coverImage ? urlForImage(post.coverImage)?.url() : undefined,
+    datePublished: post.year ? `${post.year}-01-01` : undefined,
+    path: `/projects/${params.slug}`,
+    author: {
+      "@type": "Person",
+      name: "Ikram Tauffiqul Hakim",
+    },
+    articleSection: "Projects",
+    keywords: [post.title, post.tagline, "Web Development", "Portfolio"].filter(Boolean).join(", "),
+  });
+
   return (
-    <Template>
-      <div className="relative z-10 bg-[#000319] bg-grid-black/[0.96] dark:bg-grid-white/[0.05]">
+    <>
+      <ScrollToTopOnRoute />
+      <Script
+        id="project-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectJsonLd),
+        }}
+      />
+      <Template>
+        <div className="relative z-10 bg-[#000319] bg-grid-black/[0.96] dark:bg-grid-white/[0.05]">
         <main className="relative z-10 mx-auto mt-10 min-h-screen max-w-6xl px-8 lg:px-16">
           <div className="mx-auto max-w-3xl">
+            <Breadcrumb items={[
+              { name: "Projects", href: "/projects" },
+              { name: post.title || "Project", href: `/projects/${params.slug}`, current: true }
+            ]} />
+            
             <div>
               <div className="inline-block">
                 <Link href={"/projects"} className="flex items-center">
@@ -171,16 +233,19 @@ export default async function page({ params }: Props) {
               {post?.shortdesc}
             </div>
 
-            <div className="mb-36 mt-4 flex flex-col leading-7 text-zinc-400">
+            <div className="mb-16 mt-4 flex flex-col leading-7 text-zinc-400">
               {post?.content?.length && (
                 <PortableText value={post.content as PortableTextBlock[]} />
               )}
             </div>
+
+            <RelatedProjects currentSlug={params.slug} limit={3} />
           </div>
         </main>
         <div className="absolute -bottom-5 left-0 z-0 mb-5 h-10 w-full bg-gradient-to-t from-[#000319] xl:bottom-0 xl:mb-0 xl:h-32" />
         <div className="absolute left-0 top-0 z-0 mb-5 h-10 w-full bg-gradient-to-b from-[#000319] xl:bottom-0 xl:mb-0 xl:h-32" />
       </div>
     </Template>
+    </>
   );
 }
