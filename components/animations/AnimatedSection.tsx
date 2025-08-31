@@ -25,10 +25,10 @@ export default function AnimatedSection({
   const isInView = useInView(ref, { once, margin: "-100px" });
 
   const directions = {
-    up: { y: 50 },
-    down: { y: -50 },
-    left: { x: 50 },
-    right: { x: -50 },
+    up: { x: 0, y: 50 },
+    down: { x: 0, y: -50 },
+    left: { x: 50, y: 0 },
+    right: { x: -50, y: 0 },
   };
 
   return (

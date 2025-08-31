@@ -2,8 +2,10 @@
 
 import { useScroll, useTransform, type MotionValue } from "framer-motion";
 
+import type { UseScrollOptions } from "framer-motion";
+
 interface UseScrollAnimationOptions {
-  offset?: [string, string];
+  offset?: UseScrollOptions["offset"];
   outputRange?: number[];
 }
 
