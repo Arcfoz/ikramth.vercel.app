@@ -6,7 +6,7 @@ import Template from "@/app/(site)/template";
 import { Tag } from "@/components/shared/tag";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import { Button } from "@/components/ui/button";
-import { FaBookOpen, FaGlobe, FaInfo } from "react-icons/fa6";
+import { FaBookOpen, FaGlobe, FaInfo, FaArrowRight } from "react-icons/fa6";
 import { PostQueryResult, PostSlugsResult } from "@/types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postQuery } from "@/sanity/lib/queries";
@@ -18,6 +18,7 @@ import Script from "next/script";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import RelatedProjects from "@/components/shared/RelatedProjects";
 import ScrollToTopOnRoute from "@/components/shared/ScrollToTopOnRoute";
+import TableOfContents from "@/components/shared/TableOfContents";
 
 type Props = {
   params: { slug: string };
@@ -134,7 +135,8 @@ export default async function page({ params }: Props) {
       <Template>
         <div className="relative z-10 bg-[#000319] bg-grid-black/[0.96] dark:bg-grid-white/[0.05]">
         <main className="relative z-10 mx-auto mt-10 min-h-screen max-w-6xl px-8 lg:px-16">
-          <div className="mx-auto max-w-3xl">
+          <div className="relative xl:grid xl:grid-cols-[1fr_280px] xl:gap-8">
+            <div className="mx-auto max-w-3xl xl:mx-0">
             <Breadcrumb items={[
               { name: "Projects", href: "/projects" },
               { name: post.title || "Project", href: `/projects/${params.slug}`, current: true }
@@ -194,10 +196,11 @@ export default async function page({ params }: Props) {
             {post?.documentationUrl && (
               <Button
                 asChild
-                className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
+                className="group mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
                 <Link href={post?.documentationUrl} target="_blank">
-                  <FaBookOpen />
+                  <FaBookOpen className="group-hover:hidden" />
+                  <FaArrowRight className="hidden group-hover:block" />
                   &nbsp; Documentation
                 </Link>
               </Button>
@@ -206,11 +209,12 @@ export default async function page({ params }: Props) {
             {post?.moreInformationUrl && (
               <Button
                 asChild
-                className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
+                className="group mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
                 <Link href={post?.moreInformationUrl} target="_blank"
                 >
-                  <FaInfo />
+                  <FaInfo className="group-hover:hidden" />
+                  <FaArrowRight className="hidden group-hover:block" />
                   &nbsp; More Information
                 </Link>
               </Button>
@@ -219,11 +223,12 @@ export default async function page({ params }: Props) {
             {post?.projectUrl && (
               <Button
                 asChild
-                className="mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
+                className="group mt-5 h-12 w-full rounded-full border border-zinc-500 bg-[#000319] text-primary-foreground text-white transition duration-150 hover:border-zinc-400 hover:bg-[#10132E]"
               >
                 <Link href={post?.projectUrl} target="_blank"
                 >
-                  <FaGlobe />
+                  <FaGlobe className="group-hover:hidden" />
+                  <FaArrowRight className="hidden group-hover:block" />
                   &nbsp; Website
                 </Link>
               </Button>
@@ -240,6 +245,9 @@ export default async function page({ params }: Props) {
             </div>
 
             <RelatedProjects currentSlug={params.slug} limit={3} />
+            </div>
+            
+            <TableOfContents className="xl:pl-4" />
           </div>
         </main>
         <div className="absolute -bottom-5 left-0 z-0 mb-5 h-10 w-full bg-gradient-to-t from-[#000319] xl:bottom-0 xl:mb-0 xl:h-32" />

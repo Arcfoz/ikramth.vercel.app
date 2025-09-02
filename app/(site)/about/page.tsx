@@ -1,4 +1,4 @@
-import { ProfileType } from "@/types";
+import { ProfileType, SkillsByCategoryType } from "@/types";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import React from "react";
@@ -10,7 +10,7 @@ import { Metadata } from "next";
 import { FaLocationDot } from "react-icons/fa6";
 import SigleContactSection from "../components/SigleContactSection";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { profilesQuery } from "@/sanity/lib/queries";
+import { profilesQuery, skillsByCategory } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/sanity.image";
 import { createMetadata, createJsonLd } from "@/lib/metadata";
 import Script from "next/script";
@@ -41,9 +41,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function About() {
-  const profile = await sanityFetch<ProfileType>({
-    query: profilesQuery,
-  });
+  const [profile, skillsData] = await Promise.all([
+    sanityFetch<ProfileType>({ query: profilesQuery }),
+    sanityFetch<SkillsByCategoryType>({ query: skillsByCategory }),
+  ]);
 
   const personJsonLd = createJsonLd("Person", {
     name: profile?.fullName || "Ikram Tauffiqul Hakim",
@@ -125,7 +126,7 @@ export default async function About() {
             <section className="max-w-xl lg:max-w-xl">
               <AnimatedSection delay={0.8}>
                 <div id="skills">
-                  <Skill />
+                  <Skill skillsData={skillsData} />
                 </div>
               </AnimatedSection>
               

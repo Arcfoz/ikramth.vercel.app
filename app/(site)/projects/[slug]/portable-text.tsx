@@ -12,6 +12,8 @@ import { PortableText, type PortableTextComponents, type PortableTextBlock } fro
 import Link from "next/link";
 import { BiLinkExternal } from "react-icons/bi";
 import PortableImage from "./PortableImage";
+import HashScroll from "@/components/shared/HashScroll";
+import { slugify } from "@/lib/utils/slugify";
 
 export default function CustomPortableText({ className, value }: { className?: string; value: PortableTextBlock[] }) {
   const components: PortableTextComponents = {
@@ -21,18 +23,27 @@ export default function CustomPortableText({ className, value }: { className?: s
     block: {
       normal: ({ children }) => <p className="mb-5 mt-5">{children}</p>,
       h2: ({ children }) => (
-        <h2 className="font-incognito relative my-8 block text-3xl font-bold tracking-tight text-zinc-700 before:absolute before:-left-4 before:top-1/2 before:hidden before:-translate-y-1/2 before:text-xl before:text-zinc-400 before:opacity-80 before:content-['#'] hover:before:hidden dark:text-zinc-100 dark:before:text-zinc-500 hover:before:sm:inline-block lg:text-4xl lg:before:-left-5 lg:before:text-2xl">
-          {children}
+        <h2
+          id={slugify(children)}
+          className="font-incognito my-8 block text-3xl font-bold tracking-tight text-zinc-700 dark:text-zinc-100 lg:text-4xl"
+        >
+          <HashScroll text={children} />
         </h2>
       ),
       h3: ({ children }) => (
-        <h3 className="font-incognito relative my-6 block text-2xl font-semibold tracking-tight text-zinc-700 before:absolute before:-left-4 before:top-1/2 before:hidden before:-translate-y-1/2 before:text-xl before:text-zinc-400 before:opacity-80 before:content-['#'] hover:before:hidden dark:text-zinc-100 dark:before:text-zinc-500 hover:before:sm:inline-block lg:text-3xl lg:font-bold lg:before:-left-5 lg:before:text-2xl">
-          {children}
+        <h3
+          id={slugify(children)}
+          className="font-incognito my-6 block text-2xl font-semibold tracking-tight text-zinc-700 dark:text-zinc-100 lg:text-3xl lg:font-bold"
+        >
+          <HashScroll text={children} />
         </h3>
       ),
       h4: ({ children }) => (
-        <h4 className="font-incognito relative mb-2 mt-4 inline-block text-xl font-semibold tracking-tight text-zinc-700 before:absolute before:-left-4 before:top-1/2 before:hidden before:-translate-y-1/2 before:text-xl before:text-zinc-400 before:opacity-80 before:content-['#'] hover:before:hidden dark:text-zinc-100 dark:before:text-zinc-500 hover:before:sm:inline-block lg:before:-left-6 lg:before:text-2xl">
-          {children}
+        <h4
+          id={slugify(children)}
+          className="font-incognito mb-2 mt-4 inline-block text-xl font-semibold tracking-tight text-zinc-700 dark:text-zinc-100"
+        >
+          <HashScroll text={children} />
         </h4>
       ),
     },

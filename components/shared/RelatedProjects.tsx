@@ -9,6 +9,7 @@ import { MdOutlineDirectionsRun } from "react-icons/md";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import StaggerContainer from "@/components/animations/StaggerContainer";
 import StaggerItem from "@/components/animations/StaggerItem";
+import { shuffle } from "@/lib/utils";
 
 interface RelatedProjectsProps {
   currentSlug?: string;
@@ -21,10 +22,10 @@ export default async function RelatedProjects({
 }: RelatedProjectsProps) {
   const allProjects = await sanityFetch<BlogsQueryResult>({ query: blogsQuery });
   
-  // Filter out current project and limit results
-  const relatedProjects = allProjects
-    .filter(project => project.slug !== currentSlug)
-    .slice(0, limit);
+  // Filter out current project, shuffle, and limit results
+  const relatedProjects = shuffle(
+    allProjects.filter(project => project.slug !== currentSlug)
+  ).slice(0, limit);
 
   if (relatedProjects.length === 0) {
     return null;

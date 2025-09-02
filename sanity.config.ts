@@ -18,6 +18,8 @@ import certificate from "@/sanity/schemas/documents/certificate";
 import profile from "@/sanity/schemas/documents/profile";
 import post from "@/sanity/schemas/documents/post";
 import work from "@/sanity/schemas/documents/work";
+import skill from "@/sanity/schemas/documents/skill";
+import skillCategory from "@/sanity/schemas/documents/skillCategory";
 import settings from "@/sanity/schemas/singletons/settings";
 import { resolveHref } from "@/sanity/lib/utils";
 
@@ -35,6 +37,8 @@ export default defineConfig({
       // Singletons
       settings,
       // Documents
+      skillCategory,
+      skill,
       certificate,
       profile,
       post,

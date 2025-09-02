@@ -14,7 +14,6 @@ export type ProfileType = {
   location: string;
   resumeURL: string;
   socialLinks: string[];
-  skills: string[];
   projectdesc: string;
 };
 
@@ -168,4 +167,38 @@ export type Slug = {
 
 export type PostSlugsResult = Array<{
   slug: Slug | null;
+}>;
+
+export type SkillCategoryType = {
+  _id: string;
+  name: string;
+  description?: string;
+  order: number;
+};
+
+export type SkillType = {
+  _id: string;
+  name: string;
+  icon: string;
+  category: {
+    _id: string;
+    name: string;
+    order: number;
+  };
+  order: number;
+  proficiencyLevel?: "beginner" | "intermediate" | "advanced" | "expert";
+};
+
+export type SkillsByCategoryType = Array<{
+  _id: string;
+  name: string;
+  description?: string;
+  order: number;
+  skills: Array<{
+    _id: string;
+    name: string;
+    icon: string;
+    order: number;
+    proficiencyLevel?: "beginner" | "intermediate" | "advanced" | "expert";
+  }>;
 }>;

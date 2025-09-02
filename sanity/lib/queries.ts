@@ -63,3 +63,37 @@ export const cerfsQuery = groq`*[_type == "certificate"] {
 export const worksQuery = groq`*[_type == "work"] {
   ${workFields}
 }`;
+
+export const skillCategoriesQuery = groq`*[_type == "skillCategory"] | order(order asc) {
+  _id,
+  name,
+  description,
+  order
+}`;
+
+export const skillsQuery = groq`*[_type == "skill"] | order(category->order asc, order asc) {
+  _id,
+  name,
+  icon,
+  "category": category->{
+    _id,
+    name,
+    order
+  },
+  order,
+  proficiencyLevel
+}`;
+
+export const skillsByCategory = groq`*[_type == "skillCategory"] | order(order asc) {
+  _id,
+  name,
+  description,
+  order,
+  "skills": *[_type == "skill" && references(^._id)] | order(order asc) {
+    _id,
+    name,
+    icon,
+    order,
+    proficiencyLevel
+  }
+}`;
