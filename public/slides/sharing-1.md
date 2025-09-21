@@ -40,4 +40,4 @@ Mengapa Dongeng & Mitos Lebih Kuat dari AI | Kelas Malam 86
 
 ---
 
-Barangkali kita hanya lapar secara piskologi, yang mana kelaparan ini bisa diisi oleh dongeng (cerita yang powerfull) yang dapat menjadikan kompas kehidupan kita.
+Barangkali kita hanya lapar secara psikologi, yang mana kelaparan ini bisa diisi oleh dongeng (cerita yang powerfull) yang dapat menjadikan kompas arah kehidupan kita.
