@@ -4081,6 +4081,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/reveal.js@npm:^5":
+  version: 5.2.0
+  resolution: "@types/reveal.js@npm:5.2.0"
+  checksum: 10c0/4b011e17ce01f0f8d088b2403d5723a6bdaf729a32fa4fecd80eb018cbabf6fffd0ad0991f3e8a94fc8146021d6a9257a136e9d6fc883b28b91aeb65d823db75
+  languageName: node
+  linkType: hard
+
 "@types/shallow-equals@npm:^1.0.0":
   version: 1.0.3
   resolution: "@types/shallow-equals@npm:1.0.3"
@@ -7673,6 +7680,7 @@ __metadata:
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
+    "@types/reveal.js": "npm:^5"
     autoprefixer: "npm:^10.0.1"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.1.1"
@@ -7694,6 +7702,7 @@ __metadata:
     react-icons: "npm:^5.0.1"
     react-refractor: "npm:^2.1.7"
     refractor: "npm:^4.8.1"
+    reveal.js: "npm:^5.2.1"
     sanity: "npm:^3.49.0"
     styled-components: "npm:^6.1.11"
     tailwind-merge: "npm:^2.5.3"
@@ -10750,6 +10759,13 @@ __metadata:
   version: 1.0.4
   resolution: "reusify@npm:1.0.4"
   checksum: 10c0/c19ef26e4e188f408922c46f7ff480d38e8dfc55d448310dfb518736b23ed2c4f547fb64a6ed5bdba92cd7e7ddc889d36ff78f794816d5e71498d645ef476107
+  languageName: node
+  linkType: hard
+
+"reveal.js@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "reveal.js@npm:5.2.1"
+  checksum: 10c0/aee2b307b0c5a13550346cc8913479a5aa27721ff23f8fa42660e5def7c96f509981eb643f6c53b086fd195a60a0bb4a47a4a0aae6edeba68753bec3deff187a
   languageName: node
   linkType: hard
 
