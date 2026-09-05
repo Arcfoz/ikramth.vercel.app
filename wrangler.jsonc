@@ -1,7 +1,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
-	"name": "ikramth-vercel-app",
+	"name": "ikramth",
 	"compatibility_date": "2026-09-05",
 	"compatibility_flags": [
 		"nodejs_compat",
@@ -16,12 +16,24 @@
 			// Self-reference service binding, the service name must match the worker name
 			// see https://opennext.js.org/cloudflare/caching
 			"binding": "WORKER_SELF_REFERENCE",
-			"service": "ikramth-vercel-app"
+			"service": "ikramth"
 		}
 	],
-	"images": {
-		// Enable image optimization
-		// see https://opennext.js.org/cloudflare/howtos/image
-		"binding": "IMAGES"
-	}
+"images": {
+  // Enable image optimization
+  // see https://opennext.js.org/cloudflare/howtos/image
+  "binding": "IMAGES"
+},
+"observability": {
+  // Enable log observability for this Worker
+  // see https://developers.cloudflare.com/workers/observability/logs/
+  "enabled": true,
+  "logs": {
+    "enabled": true,
+    // Keep per-invocation logs for correlating request flow
+    "invocation_logs": true,
+    // Persist logs to the Cloudflare dashboard for querying
+    "persist": true
+  }
+}
 }
